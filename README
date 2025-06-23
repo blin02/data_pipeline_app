@@ -1,0 +1,26 @@
+# Data Pipeline
+
+Description:
+
+
+Project structure:
+- util layer: common modules and functions
+- service: service classes (business logic layer)
+- process: process used as main entries for Spark jobs
+
+Folder structure:
+- src
+  -> config
+  -> constant
+  -> container
+  -> proess
+  -> service
+  -> util
+- docs
+- setup
+- tests
+
+Used Modules and Libraries
+- Interface and Class implementation: Python's ABC module is used to achieve this. Link: https://docs.python.org/3.9/library/abc.html
+- Dependency Injection: DI can help manage different implementation in different situation/environments. The dependency-injector module is used for this purpose. Link: https://github.com/ets-labs/python-dependency-injector
+- Configuration: Configurations for different environments are created in the "config" folder. "default.ini" include all the common settings and local settings. For settings are different than local environment, they should be defined in "qa.ini" or "prod.ini". Loading of config is handled by the "Container" class in the "process" folder, which inherits the "DeclarativeContainer" in the dependency-injector. It requires to setup a "env" env variable in the running environment.
