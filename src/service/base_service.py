@@ -6,6 +6,9 @@ from typing import List
 
 
 class BaseService:
+    """
+    Base Class that contains common functions for all service classes.
+    """
     __metaclass__ = ABCMeta
 
     def __init__(self):

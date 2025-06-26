@@ -7,6 +7,9 @@ from service.base_service import BaseService
 
 
 class DonationTransformationService(BaseService):
+    """
+    Transform raw data and store them to a final storage. Also perform some simple aggregation for analytic purpose
+    """
 
     def __init__(self):
         super().__init__()
@@ -36,21 +39,3 @@ class DonationTransformationService(BaseService):
 
         return df_result
 
-if __name__ == "__main__":
-    service = DonationTransformationService()
-
-    stage_output_path = "../temp/data/stage/donation_1_output.parquet"
-    df = service.load_file_to_dataframe(stage_output_path, DataFormat.PARQUET)
-
-    df_transformed = service.transform(df)
-    pprint.pp(df_transformed)
-
-    df_result = service.get_donation_per_campain_per_day(df_transformed)
-    pprint.pp(df_result)
-
-    df_result2 = service.get_donation_per_day(df_transformed)
-    pprint.pp(df_result2)
-
-    service.save_as_parquet(df_transformed, "../temp/data/final/donation_1_raw.parquet")
-    service.save_as_parquet(df_result, "../temp/data/final/donation_1_donation_per_campain_per_day.parquet")
-    service.save_as_parquet(df_result2, "../temp/data/final/donation_1_donation_per_day.parquet")

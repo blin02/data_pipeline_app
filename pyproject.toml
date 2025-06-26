@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+addopts = "--cov=src --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = [
+  "*/__init__.py"
+]
+
+[project]
+name = "data-pipeline"
+version = "0.1.0"
+description = "An example project of data pipeline"
+authors = [{ name="Bin Lin", email="abc@xyz.com" }]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+  "pandas~=2.3.0",
+  "pyarrow~=19.0.1",
+  "fastparquet~=2024.11.0",
+  "pandera~=0.24.0"
+]
